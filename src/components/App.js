@@ -3,7 +3,9 @@ import openSocket from 'socket.io-client';
 
 import PositionList from './PositionList';
 
-const socket = openSocket('http://localhost:8080');
+require('dotenv').config()
+
+const socket = openSocket(process.env.REACT_APP_API_URL);
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,11 +13,11 @@ export default class App extends React.Component {
     this.state = {
       name: '',
       positions: {},
+      logged: false,
     };
   }
 
-  componentDidMount() {
-    this.setState({name: prompt('name')});
+  initializeSocket() {
     socket.on('messages', (msgs) => {
       this.setState({positions: msgs});
     });
@@ -26,12 +28,34 @@ export default class App extends React.Component {
     socket.emit('message', message);
   }
 
+  onNameEnter(e) {
+    e.preventDefault()
+    this.initializeSocket();
+    this.setState({logged: true});
+  }
+
   render () {
-    return (
-      <div id="app" onMouseMove={this.emitMessage.bind(this)}>
-        <div>What's the Point?</div>
-        <PositionList positions={this.state.positions}/>
-      </div>
-    );
+    if (this.state.logged) {
+      return (
+        <div id="app" onMouseMove={this.emitMessage.bind(this)}>
+          <div>What's the Point?</div>
+          <PositionList positions={this.state.positions}/>
+        </div>
+      );
+    } else {
+      return (
+        <div id="login">
+          <form onSubmit={this.onNameEnter.bind(this)}>
+            <label htmlFor="name">Enter Name</label>
+            <input
+              name="name"
+              type="text"
+              value={this.state.name}
+              onChange={(e) => this.setState({name: e.target.value})}
+            />
+          </form>
+        </div>
+      );
+    }
   }
 };
