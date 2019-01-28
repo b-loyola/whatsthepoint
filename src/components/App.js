@@ -3,11 +3,7 @@ import openSocket from 'socket.io-client';
 
 import PositionList from './PositionList';
 
-let host = 'http://localhost:5000';
-if (process.env.NODE_ENV === 'production') {
-  host = 'https://whatta.herokuapp.com/'
-}
-const socket = openSocket(host);
+const socket = openSocket('/');
 
 export default class App extends React.Component {
   constructor(props) {
