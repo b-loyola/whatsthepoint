@@ -1,31 +1,31 @@
 {
-  "name": "sockets",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "^2.1.3",
-    "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
-  },
+  "name": "whatsthepoint",
+  "version": "0.1.1",
+  "description": "I'm not sure yet, but I'm having fun making it.",
+  "main": "index.js",
   "scripts": {
-    "start": "PORT=5000 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "server": "cd server && npm start",
+    "start": "concurrently --kill-others \"npm run server\" \"npm run client\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b-loyola/whatsthepoint.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "engines": {
-    "node": "10.15.0"
-  }
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.9",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/b-loyola/whatsthepoint/issues"
+  },
+  "homepage": "https://github.com/b-loyola/whatsthepoint#readme"
 }

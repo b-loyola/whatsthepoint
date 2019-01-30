@@ -1,13 +1,5 @@
-const express = require('express');
-const path = require('path');
-const app = express();
-
-const http = require('http');
-const server = http.Server(app);
-
+const server = require('./server');
 const io = require('socket.io')(server);
-
-app.use(express.static(path.join(__dirname, 'build')));
 
 let locations = {};
 
@@ -30,10 +22,7 @@ setInterval(() => {
   });
 }, 1000);
 
-let port = process.env.PORT
-if (port == null || port == "") {
-  port = '5000';
-}
+let port = process.env.PORT || 4000;
 
 server.listen(port, () => {
   console.log('Server running on port ' + port);
