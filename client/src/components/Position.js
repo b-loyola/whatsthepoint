@@ -4,6 +4,7 @@ export default class Position extends React.Component {
   style () {
     return {
       position: 'absolute',
+      color: this.props.position.color,
       left: this.props.position.coords[0] - 4,
       top: this.props.position.coords[1] - 3
     }
