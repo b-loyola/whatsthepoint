@@ -18,9 +18,19 @@ export default class Login extends React.Component {
                 name="name"
                 type="text"
                 value={this.props.name}
-                onChange={this.props.onChange}
+                onChange={this.props.onChangeName}
               />
             </div>
+            <div className="field">
+              <input
+                placeholder="blue or #AACC55"
+                name="color"
+                type="text"
+                value={this.props.color}
+                onChange={this.props.onChangeColor}
+              />
+            </div>
+            <input type='submit' value='Begin!'/>
           </form>
         </div>
       </div>

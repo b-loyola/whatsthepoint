@@ -9,6 +9,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       name: '',
+      color: '',
       positions: {},
       logged: false,
     };
@@ -21,7 +22,7 @@ export default class App extends React.Component {
   }
 
   emitMessage(e) {
-    const message = {name: this.state.name, coords: [e.pageX, e.pageY]}
+    const message = {name: this.state.name, color: this.state.color, coords: [e.pageX, e.pageY]}
     socket.emit('message', message);
   }
 
@@ -43,8 +44,10 @@ export default class App extends React.Component {
     return(
       <Login
         name={this.state.name}
+        color={this.state.color}
         onLogin={this.onNameEnter.bind(this)}
-        onChange={(e) => this.setState({name: e.target.value})}
+        onChangeName={(e) => this.setState({name: e.target.value})}
+        onChangeColor={(e) => this.setState({color: e.target.value})}
       />
     );
   }
